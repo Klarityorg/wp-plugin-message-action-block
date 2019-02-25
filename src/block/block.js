@@ -20,10 +20,9 @@ const iconEl = el('svg', { width: 128, height: 128, viewBox: "0 0 128 128" },
 );
 
 registerBlockType( 'klarity/message-action', {
-  // Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-  title: __( 'Message action' ), // Block title.
-  icon: iconEl, // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-  category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+  title: __( 'Message action' ),
+  icon: iconEl,
+  category: 'common',
   keywords: [
     __( 'Message action' )
   ],
@@ -109,13 +108,13 @@ registerBlockType( 'klarity/message-action', {
     return (
       <section>
         <p>
-          eMail Action: Create mesisages and make recievers available.
+          eMail Action: Create messages and make receivers available.
         </p>
         <div className="form-group">
           <h4>Email Subject</h4>
           Subject for Email: <input value={currentEmailSubjectEdit} onChange={(e) => setValue(e, 'currentEmailSubjectEdit')}/> <br/>
           <h4>Message Introduction</h4>
-          Message introduction for email and whatsapp:  <br/>
+          Message introduction for email and WhatsApp:  <br/>
           <div class="text-input">
           <RichText	value={currentIntroEdit} onChange={ content => setAttributes({ currentIntroEdit: content }) } />
           </div>
@@ -152,7 +151,7 @@ registerBlockType( 'klarity/message-action', {
             {receivers.map((receiver) =>
               <li>
                 <strong>Display name:</strong> {receiver.name}<br/>
-                <strong>Whatsapp number:</strong> {receiver.number}<br/>
+                <strong>WhatsApp number:</strong> {receiver.number}<br/>
                 <strong>Email:</strong> {receiver.email}<br/>
                 <button onClick={() => removeReceiver(receiver)}>Delete</button>
                 <hr></hr>
@@ -163,14 +162,14 @@ registerBlockType( 'klarity/message-action', {
             <h5>Add reciever</h5>
             <p>
               Display name: (who is this action targeting?): <input value={currentReceiverNameEdit} onChange={(e) => setValue(e, 'currentReceiverNameEdit')}/> <br/>
-              Whatsapp number: (will not be visible to the user) <input value={currentReceiverNumberEdit} onChange={(e) => setValue(e, 'currentReceiverNumberEdit')} /> <br/>
+              WhatsApp number: (will not be visible to the user) <input value={currentReceiverNumberEdit} onChange={(e) => setValue(e, 'currentReceiverNumberEdit')} /> <br/>
               Email: (will not be visible to the user) <input type="email" value={currentReceiverEmailEdit} onChange={(e) => setValue(e, 'currentReceiverEmailEdit')} /> <br/>
               <button class="btn waves-effect waves-light"
                 disabled={currentReceiverNameEdit == '' || (currentReceiverNumberEdit == ''  && currentReceiverEmailEdit == '')}
                 type="submit"
                 name="action"
                 onClick={addReceiver} >
-                  Add New Reciever
+                  Add New Receiver
               </button>
             </p>
           </form>
@@ -181,67 +180,6 @@ registerBlockType( 'klarity/message-action', {
 
   //the click handler for this function is inside send-message.js
   save: function( props ) {
-    let {attributes: {messages, receivers, currentIntroEdit, currentOutroEdit, currentEmailSubjectEdit }} = props;
-    messages = messages || [];
-    receivers = receivers || [];
-    return (
-      <section transitionend="randomSelect">  {/* id is used as a jquery selector  */}
-        <input type="hidden" id="custId" name="custId" data-currentEmailSubject={currentEmailSubjectEdit}></input>
-        <p>
-          <h4 class="left-align">Introduction of the message</h4>
-        </p>
-        <p class="introText" dangerouslySetInnerHTML={{__html: currentIntroEdit}} ></p>
-        <p>
-          <h4 class="left-align">Select your arguments</h4>
-          <p class="left-align"><i>Create your own draft by selecting the arguments you like below. You can edit the text in a later step.</i></p>
-        </p>
-        <div className="form-group">
-          <form>
-            <ul>
-              {messages.map((message) =>
-                 <li className="message">  {/* class message is used as a jquery selector  */}
-                  <p>
-                    <label>
-                      <input type="checkbox" data-message={message.message} />
-                      <span>{message.message}</span>
-                    </label>
-                  </p>
-                </li>
-              )}
-            </ul>
-            <p>
-              <h4 class="left-align">Closing message</h4>
-            </p>
-            <p class="outroText" dangerouslySetInnerHTML={{__html: currentOutroEdit}} ></p>
-            <h4 class="left-align">
-              Who do you want to send this to?
-            </h4>
-            <ul className="receivers">
-              {receivers.map((receiver) =>
-                 <li className="receiver">  {/* class message is used as a jquery selector  */}
-                  <p>
-                    <label>
-                      <input name="group2" type="radio" data-whatsapp={receiver.number} data-email={receiver.email}
-                             onclick={"toggleMessageActionButtons(this, '" + receiver.number + "' , '" + receiver.email + "')"} />
-                      <span>{receiver.name}</span>
-                    </label>
-                  </p>
-                </li>
-              )}
-            </ul>
-          </form>
-          <p>Send message through</p>
-          <button class="email btn waves-effect waves-light message-btn" type="submit" name="action" onclick="messageActionSend(this, 'email')" disabled>
-            Default email client
-          </button>
-          <button class="whatsapp a2a_button_whatsapp btn waves-effect waves-light message-btn" type="submit" name="action" onclick="messageActionSend(this, 'whatsapp')" disabled>
-            Whatsapp
-          </button>
-          <button class="btn waves-effect waves-light message-btn" type="submit" name="action" onclick="messageActionSend(this, 'copy')" >
-            Copy message to clipboard
-          </button>
-        </div>
-      </section>
-    );
+    return null;
   },
 } );
