@@ -21,7 +21,8 @@ If you wish to build the plugin yourself, see the "Building" section hereunder.
 == Frequently Asked Questions ==
 
 == Screenshots ==
-No screenshots yet.
+1. Screenshot of editor view
+2. Screenshot of message action
 
 == Changelog ==
 = 1.0 =
@@ -32,4 +33,3 @@ No screenshots yet.
 1. Build the plugin with : `npm install`
 1. If you wish to make code changes, run `npm start` and make these changes. They will compiled automatically.
 1. After you make changes to the code, you may need to remove and add again the blocks that you had previously created so that the changes are caught.
-
