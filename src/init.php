@@ -113,7 +113,7 @@ function render_message_action_block($attributes) {
 
 function register_message_action_block_callback() {
   if (function_exists('register_block_type')) {
-    register_block_type('klarity/message-action', [
+    register_block_type('klarity/klarity-message-action-block', [
       'render_callback' => 'render_message_action_block',
       'attributes' => [
         'messages' => [
