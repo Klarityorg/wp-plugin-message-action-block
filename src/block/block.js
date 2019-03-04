@@ -159,7 +159,7 @@ registerBlockType( 'klarity/klarity-message-action-block', {
             )}
           </ul>
           <form>
-            <h5>Add reciever</h5>
+            <h5>Add receiver</h5>
             <p>
               Display name: (who is this action targeting?): <input value={currentReceiverNameEdit} onChange={(e) => setValue(e, 'currentReceiverNameEdit')}/> <br/>
               WhatsApp number: (will not be visible to the user) <input value={currentReceiverNumberEdit} onChange={(e) => setValue(e, 'currentReceiverNumberEdit')} /> <br/>
