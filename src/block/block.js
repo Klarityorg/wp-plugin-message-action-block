@@ -106,7 +106,7 @@ registerBlockType( 'klarity/klarity-message-action-block', {
     messages = messages || [];
     receivers = receivers || [];
     return (
-      <section>
+      <section class="wp-block-klarity-message-action">
         <p>
           eMail Action: Create messages and make receivers available.
         </p>

@@ -41,7 +41,7 @@ function klarity_message_action_cgb_editor_assets() { // phpcs:ignore
 
 add_action('enqueue_block_editor_assets', 'klarity_message_action_cgb_editor_assets');
 
-function render_message_action_block($attributes) {
+function render_klarity_message_action_block($attributes) {
   [
     'messages' => $messages,
     'receivers' => $receivers,
@@ -88,7 +88,7 @@ function render_message_action_block($attributes) {
                 <p>
                   <label>
                     <input name='group2' type='radio' data-whatsapp='{$receiver['number']} ' data-email='{$receiver['email']}'
-                           onclick='toggleMessageActionButtons(this, \"{$receiver['number']}\" , \"{$receiver['email']}'\")' />
+                           onclick='toggleMessageActionButtons(this, \"{$receiver['number']}\" , \"{$receiver['email']}\")' />
                     <span>{$receiver['name']}</span>
                   </label>
                 </p>
@@ -111,10 +111,10 @@ function render_message_action_block($attributes) {
   ";
 }
 
-function register_message_action_block_callback() {
+function register_klarity_message_action_block_callback() {
   if (function_exists('register_block_type')) {
     register_block_type('klarity/klarity-message-action-block', [
-      'render_callback' => 'render_message_action_block',
+      'render_callback' => 'render_klarity_message_action_block',
       'attributes' => [
         'messages' => [
           'type' => 'array',
@@ -161,4 +161,4 @@ function register_message_action_block_callback() {
   }
 }
 
-add_action('plugins_loaded', 'register_message_action_block_callback');
+add_action('plugins_loaded', 'register_klarity_message_action_block_callback');

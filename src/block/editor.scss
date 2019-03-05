@@ -1,17 +1,23 @@
-h4  {
-  text-align: left !important;
-  font-size: 25px !important;
-}
+.wp-block-klarity-message-action {
+  h4  {
+    text-align: left !important;
+    font-size: 25px !important;
+  }
 
-h5  {
-  text-align: left !important;
-  font-size: 20px !important;
-}
+  h5  {
+    text-align: left !important;
+    font-size: 20px !important;
+  }
 
-.text-input {
-  border-style: solid;
-  border-radius: .5em;
-  border-width: thin;
-  padding: 5px;
-  margin: 5px;
+  .text-input {
+    border-style: solid;
+    border-radius: .5em;
+    border-width: thin;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+  }
 }
