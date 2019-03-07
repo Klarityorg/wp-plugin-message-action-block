@@ -42,13 +42,13 @@ function klarity_message_action_cgb_editor_assets() { // phpcs:ignore
 add_action('enqueue_block_editor_assets', 'klarity_message_action_cgb_editor_assets');
 
 function render_klarity_message_action_block($attributes) {
-  [
+  list(
     'messages' => $messages,
     'receivers' => $receivers,
     'currentEmailSubjectEdit' => $currentEmailSubjectEdit,
     'currentIntroEdit' => $currentIntroEdit,
     'currentOutroEdit' => $currentOutroEdit
-  ] = $attributes;
+  ) = $attributes;
 
   return "
     <section transitionend='randomSelect' class='wp-block-klarity-message-action'>
