@@ -42,21 +42,14 @@ function klarity_message_action_cgb_editor_assets() { // phpcs:ignore
 add_action('enqueue_block_editor_assets', 'klarity_message_action_cgb_editor_assets');
 
 function render_klarity_message_action_block($attributes) {
-  list(
-    'messages' => $messages,
-    'receivers' => $receivers,
-    'currentEmailSubjectEdit' => $currentEmailSubjectEdit,
-    'currentIntroEdit' => $currentIntroEdit,
-    'currentOutroEdit' => $currentOutroEdit
-  ) = $attributes;
 
   return "
     <section transitionend='randomSelect' class='wp-block-klarity-message-action'>
-      <input type='hidden' id='custId' name='custId' data-currentEmailSubject='$currentEmailSubjectEdit' />
+      <input type='hidden' id='custId' name='custId' data-currentEmailSubject='{$attributes['currentEmailSubjectEdit']}' />
       <p>
         <h4 class='left-align'>Introduction of the message</h4>
       </p>
-      <p class='introText'>$currentIntroEdit</p>
+      <p class='introText'>{$attributes['currentIntroEdit']}</p>
       <p>
         <h4 class='left-align'>Select your arguments</h4>
         <p class='left-align'><i>Create your own draft by selecting the arguments you like below. You can edit the text in a later step.</i></p>
@@ -73,12 +66,12 @@ function render_klarity_message_action_block($attributes) {
                   </label>
                 </p>
               </li>";
-            }, $messages))."
+            }, $attributes['messages']))."
           </ul>
           <p>
             <h4 class='left-align'>Closing message</h4>
           </p>
-          <p class='outroText'>$currentOutroEdit</p>
+          <p class='outroText'>{$attributes['currentOutroEdit']}</p>
           <h4 class='left-align'>
             Who do you want to send this to?
           </h4>
@@ -93,7 +86,7 @@ function render_klarity_message_action_block($attributes) {
                   </label>
                 </p>
               </li>";
-            }, $receivers))."
+            }, $attributes['receivers']))."
           </ul>
         </form>
         <p>Send message through</p>
