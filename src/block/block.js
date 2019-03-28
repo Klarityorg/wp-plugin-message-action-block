@@ -141,7 +141,6 @@ registerBlockType( 'klarity/klarity-message-action-block', {
           Closing message for email and whatsapp: <br/>
           <div class="text-input">
           <RichText	value={currentOutroEdit} onChange={ content => {
-            console.log(content);
             setAttributes({ currentOutroEdit: content })
           } } />
           </div>
