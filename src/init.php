@@ -80,8 +80,7 @@ function render_klarity_message_action_block($attributes) {
                return "<li class='receiver'>
                 <p>
                   <label>
-                    <input name='group2' type='radio' data-whatsapp='{$receiver['number']} ' data-email='{$receiver['email']}'
-                           onclick='toggleMessageActionButtons(this, \"{$receiver['number']}\" , \"{$receiver['email']}\")' />
+                    <input name='group2' type='radio' data-whatsapp='{$receiver['number']}' data-email='{$receiver['email']}' />
                     <span>{$receiver['name']}</span>
                   </label>
                 </p>
@@ -90,10 +89,10 @@ function render_klarity_message_action_block($attributes) {
           </ul>
         </form>
         <p>Send message through</p>
-        <button class='email btn waves-effect waves-light message-btn' type='submit' name='action' onclick='messageActionSend(this, \"email\")' disabled>
+        <button class='email btn waves-effect waves-light message-btn' type='submit' name='action' onclick='messageActionSend(this, \"email\")'>
           Default email client
         </button>
-        <button class='whatsapp a2a_button_whatsapp btn waves-effect waves-light message-btn' type='submit' name='action' onclick='messageActionSend(this, \"whatsapp\")' disabled>
+        <button class='whatsapp a2a_button_whatsapp btn waves-effect waves-light message-btn' type='submit' name='action' onclick='messageActionSend(this, \"whatsapp\")'>
           Whatsapp
         </button>
         <button class='btn waves-effect waves-light message-btn' type='submit' name='action' onclick='messageActionSend(this, \"copy\")' >

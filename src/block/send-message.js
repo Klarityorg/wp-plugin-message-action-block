@@ -1,9 +1,12 @@
-function toggleMessageActionButtons(el, number, email) {
-	jQuery(el).closest('section').find('.whatsapp').prop('disabled', function () {
-		return number == '';
-	});
-	jQuery(el).closest('section').find('.email').prop('disabled', function () {
-		return email == '';
+function shouldButtonBeDisabled(input, btn) {
+	return (btn.hasClass('whatsapp') && !input.data('whatsapp'))
+		  || (btn.hasClass('email') && !input.data('email'));
+}
+
+function toggleMessageActionButtons() {
+	const input = jQuery(this).find('input');
+	jQuery(this).closest('section').find('.message-btn').each(function() {
+		jQuery(this).prop({disabled: shouldButtonBeDisabled(input, jQuery(this))});
 	});
 }
 
@@ -16,10 +19,11 @@ function copyTextToClipboard(text) {
 	}
 }
 
-var messageActionSend = (el, action) => {
-	const generalData = jQuery(el).closest('section').find('input[type=hidden]').data();
-	const introMessage = jQuery(el).closest('section').find('.introText')[0].innerText;
-	const outroMessage = jQuery(el).closest('section').find('.outroText')[0].innerText;
+function messageActionSend(el, action) {
+	const section = jQuery(el).closest('section');
+	const generalData = section.find('input[type=hidden]').data();
+	const introMessage = section.find('.introText').text();
+	const outroMessage = section.find('.outroText').text();
 	const emailSubject = generalData.currentemailsubject;
 
 	let message = jQuery(el)
@@ -29,7 +33,7 @@ var messageActionSend = (el, action) => {
 		.get()
 		.join('\n\n');
 
-	message = introMessage + "\n\n" + message + "\n\n" + outroMessage;
+	message = [introMessage, message, outroMessage].join('\n\n');
 
 	const encodedMessage = encodeURI(message);
 
@@ -51,16 +55,28 @@ var messageActionSend = (el, action) => {
 	if (typeof ga === "function") {
 		ga('send', 'event', 'send-message-action', action);
 	}
-};
-
-document.addEventListener("DOMContentLoaded", randomSelect);
-
-function randomSelect() {
-	jQuery('.wp-block-klarity-message-action').find('.receivers').each(function (i, obj) {
-		const receivers = jQuery(obj).find("input");
-		const randomlySelectedReceiver = jQuery(receivers).eq(Math.floor(Math.random() * (receivers.length)));
-
-		jQuery(randomlySelectedReceiver).attr('checked', 'checked');
-		toggleMessageActionButtons(randomlySelectedReceiver, randomlySelectedReceiver.data("whatsapp"), randomlySelectedReceiver.data("email"))
-	});
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+	const section = jQuery('section.wp-block-klarity-message-action');
+	const receivers = section.find('.receivers .receiver');
+
+	section.find('.message-btn').each(function() {
+		let btn = jQuery(this);
+		let shouldBeHidden = true;
+		jQuery(receivers).each(function() {
+			if (!shouldButtonBeDisabled(jQuery(this).find('input'), btn)) {
+				shouldBeHidden = false;
+			}
+		});
+		if (shouldBeHidden) {
+			btn.remove();
+		}
+	});
+
+	jQuery(receivers)
+		.on('click', toggleMessageActionButtons)
+		.eq(Math.floor(Math.random() * (receivers.length)))
+			.find('input')
+				.trigger('click');
+});
