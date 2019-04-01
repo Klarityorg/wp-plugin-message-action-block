@@ -22,8 +22,8 @@ function copyTextToClipboard(text) {
 function messageActionSend(el, action) {
 	const section = jQuery(el).closest('section');
 	const generalData = section.find('input[type=hidden]').data();
-	const introMessage = section.find('.introText').text();
-	const outroMessage = section.find('.outroText').text();
+	const introMessage = section.find('.introText').prop('innerText');
+	const outroMessage = section.find('.outroText').prop('innerText');
 	const emailSubject = generalData.currentemailsubject;
 
 	let message = jQuery(el)
