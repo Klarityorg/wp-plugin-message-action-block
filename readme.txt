@@ -4,7 +4,7 @@ Tags: message, action, block, gutenberg
 Requires at least: 5.0.0
 Tested up to: 5.1.0
 Requires PHP: 7.2.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -25,6 +25,8 @@ If you wish to build the plugin yourself, see the "Building" section hereunder.
 2. Screenshot of message action
 
 == Changelog ==
+= 1.1.2 =
+* Fix line breaks in generated message
 = 1.1.1 =
 * Bugfixes
 = 1.1.0 =
